@@ -74,7 +74,7 @@
 									</ul>
 								</div>
 							</li>
-							<li><a href="login">Login</a></li>
+							<li><a href="login">Login/Register</a></li>
 						</ul>
 					</div>
 				</div>
