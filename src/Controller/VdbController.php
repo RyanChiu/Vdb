@@ -14,17 +14,21 @@ class VdbController extends AppController {
 		$this->loadComponent('Csrf');
 		$this->loadComponent('Auth', [
 			'authenticate' => [
-				'Digest' => [
-		            'fields' => ['username' => 'email', 'password' => 'digest_hash'],
-		            'userModel' => 'Accounts'
-		        ],
+				'Form' => [
+					'userModel' => 'Accounts',
+					'fields' => ['username' => 'email', 'password' => 'pwd']
+				]
 			],
-			'storage' => 'Memory',
-    		'unauthorizedRedirect' => false
-		]);
-		// load the Captcha component and set its parameter
-		$this->loadComponent('CakeCaptcha.Captcha', [
-				'captchaConfig' => 'LoginCaptcha'
+			'Basic' => ['userModel' => 'Accounts'],
+			'loginRedirect' => [
+				'controller' => 'Vdb',
+				'action' => 'index'
+			],
+			'logoutRedirect' => [
+				'controller' => 'Vdb',
+				'action' => 'index',
+				'home'
+			]
 		]);
 		$this->loadComponent('Flash');
 		
@@ -42,6 +46,11 @@ class VdbController extends AppController {
     }
     
     public function login() {
+    	// load the Captcha component and set its parameter
+    	$this->loadComponent('CakeCaptcha.Captcha', [
+			'captchaConfig' => 'LoginCaptcha'
+    	]);
+    	
     	if ($this->request->is('post')) {
     		$Account = $this->Auth->identify();
     		if ($Account) {
