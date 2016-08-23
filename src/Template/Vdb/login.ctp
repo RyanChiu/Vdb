@@ -14,17 +14,36 @@
 		<div class="row">
 			<div class="col-sm-5">
 				<div class="basic-login">
-					<form role="form" role="form">
+					<!-- <form role="form" role="form"> -->
+					<?= $this->Flash->render('auth') ?>
+					<?= $this->Form->create(null, array('role' => 'form'))?>
 						<div class="form-group">
-							<label for="login-username"><i class="icon-user"></i> <b>Username
-									or Email</b></label> <input class="form-control"
-								id="login-username" type="text" placeholder="">
+							<label for="login-username"><i class="icon-user"></i> <b>Email</b></label>
+							<!-- 
+							<input class="form-control" id="login-username" type="text"
+								placeholder="">
+							-->
+							<?= $this->Form->input('email', array('label' => false, 'class' => 'form-control', 'type' => 'text', 'placeholder' => '')) ?>
 						</div>
 						<div class="form-group">
 							<label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
-							<input class="form-control" id="login-password" type="password"
-								placeholder="">
+							<!--  
+							<input class="form-control" id="login-password"
+								type="password" placeholder="">
+							-->
+							<?= $this->Form->input('pwd', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
 						</div>
+						<div class="form-group">
+							<!-- show captcha image html -->
+						    <?= captcha_image_html() ?>
+						
+						    <!-- Captcha code user input textbox -->
+						    <?= $this->Form->input('CaptchaCode', [
+						      'label' => 'Retype the characters from the picture:',
+						      'maxlength' => '10',
+						      'id' => 'CaptchaCode'
+						    ]) ?>
+						</div>    
 						<div class="form-group">
 							<label class="checkbox"> <input type="checkbox"> Remember me
 							</label> <a href="page-password-reset.html"
@@ -32,7 +51,8 @@
 							<button type="submit" class="btn pull-right">Login</button>
 							<div class="clearfix"></div>
 						</div>
-					</form>
+					<!-- </form> -->
+					<?= $this->Form->end() ?>
 				</div>
 			</div>
 			<div class="col-sm-7 social-login">

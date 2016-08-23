@@ -29,6 +29,9 @@
 		</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        
+        <!-- include the BotDetect layout stylesheet -->
+		<?= $this->Html->css(captcha_layout_stylesheet_url(), ['inline' => false]) ?>
 
         <?= $this->Html->css('bootstrap.min.css') ?>
         <?= $this->Html->css('icomoon-social.css') ?>

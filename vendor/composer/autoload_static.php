@@ -15,6 +15,7 @@ class ComposerStaticInit6a486563eb6f94a0350d485ca2c33193
         'b1fc73705e1bec51cd2b20a32cf1c60a' => __DIR__ . '/..' . '/cakephp/cakephp/src/Utility/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        '31c52906bef21ac4e921163ce1106498' => __DIR__ . '/..' . '/captcha-com/cakephp-captcha/src/Support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -57,6 +58,7 @@ class ComposerStaticInit6a486563eb6f94a0350d485ca2c33193
             'Cake\\Composer\\' => 14,
             'Cake\\Chronos\\' => 13,
             'Cake\\' => 5,
+            'CakeCaptcha\\' => 12,
         ),
         'B' => 
         array (
@@ -146,6 +148,10 @@ class ComposerStaticInit6a486563eb6f94a0350d485ca2c33193
         'Cake\\' => 
         array (
             0 => __DIR__ . '/..' . '/cakephp/cakephp/src',
+        ),
+        'CakeCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/captcha-com/cakephp-captcha/src',
         ),
         'Bake\\' => 
         array (

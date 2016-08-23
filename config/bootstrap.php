@@ -211,3 +211,4 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('Migrations');
+Plugin::load('CakeCaptcha', ['routes' => true]);
