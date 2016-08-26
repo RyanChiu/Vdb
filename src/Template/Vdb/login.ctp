@@ -16,14 +16,14 @@
 				<div class="basic-login">
 					<!-- <form role="form" role="form"> -->
 					<?= $this->Flash->render('auth') ?>
-					<?= $this->Form->create(null, array('role' => 'form'))?>
+					<?= $this->Form->create()?>
 						<div class="form-group">
 							<label for="login-username"><i class="icon-user"></i> <b>Email</b></label>
 							<!-- 
 							<input class="form-control" id="login-username" type="text"
 								placeholder="">
 							-->
-							<?= $this->Form->input('email', array('label' => false, 'class' => 'form-control', 'type' => 'text', 'placeholder' => '')) ?>
+							<?= $this->Form->input('username', array('label' => false, 'class' => 'form-control', 'type' => 'text', 'placeholder' => '')) ?>
 						</div>
 						<div class="form-group">
 							<label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
@@ -31,7 +31,7 @@
 							<input class="form-control" id="login-password"
 								type="password" placeholder="">
 							-->
-							<?= $this->Form->input('pwd', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
+							<?= $this->Form->input('password', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
 						</div>
 						<div class="form-group">
 							<!-- show captcha image html -->

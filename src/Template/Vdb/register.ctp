@@ -15,14 +15,14 @@
 			<div class="col-sm-5">
 				<div class="basic-login">
 					<!-- <form role="form"> -->
-					<?= $this->Form->create($Account, array('role' => 'form'))?>
+					<?= $this->Form->create($user)?>
 						<div class="form-group">
 							<label for="register-username"><i class="icon-user"></i> <b>Email</b></label>
 							<!-- 
 							<input class="form-control" id="register-username" type="text"
 								placeholder="">
 							-->
-							<?= $this->Form->input('email', array('label' => false, 'class' => 'form-control', 'type' => 'text', 'placeholder' => '')) ?>
+							<?= $this->Form->input('username', array('label' => false, 'class' => 'form-control', 'type' => 'text', 'placeholder' => '')) ?>
 						</div>
 						<div class="form-group">
 							<label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
@@ -30,7 +30,7 @@
 							<input class="form-control" id="register-password"
 								type="password" placeholder="">
 							-->
-							<?= $this->Form->input('pwd', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
+							<?= $this->Form->input('password', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
 						</div>
 						<div class="form-group">
 							<label for="register-password2"><i class="icon-lock"></i> <b>Re-enter
@@ -39,7 +39,7 @@
 							<input class="form-control"
 								id="register-password2" type="password" placeholder="">
 							-->
-							<?= $this->Form->input('pwd2', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
+							<?= $this->Form->input('password2', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn pull-right">Register</button>

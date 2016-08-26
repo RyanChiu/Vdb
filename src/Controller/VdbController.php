@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
-use App\Model\Entity\Account;
+use App\Model\Entity\User;
 
 class VdbController extends AppController {
 	public function initialize()
@@ -12,27 +12,20 @@ class VdbController extends AppController {
 		parent::initialize();
 		// Always enable the CSRF component.
 		$this->loadComponent('Csrf');
-		$this->loadComponent('Auth', [
-			'authenticate' => [
-				'Form' => [
-					'userModel' => 'Accounts',
-					'fields' => ['username' => 'email', 'password' => 'pwd']
-				]
-			],
-			'Basic' => ['userModel' => 'Accounts'],
-			'loginRedirect' => [
-				'controller' => 'Vdb',
-				'action' => 'index'
-			],
-			'logoutRedirect' => [
-				'controller' => 'Vdb',
-				'action' => 'index',
-				'home'
-			]
-		]);
 		$this->loadComponent('Flash');
-		
-		$this->Accounts = TableRegistry::get('Accounts');
+        $this->loadComponent('Auth', [
+            'loginRedirect' => [
+                'controller' => 'Vdb',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Vdb',
+                'action' => 'login',
+                'home'
+            ]
+        ]);
+        
+        $this->Users = TableRegistry::get("Users");
 	}
 	
 	public function beforeFilter(Event $event)
@@ -52,13 +45,22 @@ class VdbController extends AppController {
     	]);
     	
     	if ($this->request->is('post')) {
-    		$Account = $this->Auth->identify();
-    		if ($Account) {
-    			$this->Flash->success('logged in!');
-    			$this->Auth->setUser($Account);
-    			return $this->redirect($this->Auth->redirectUrl());
+    		// validate the user-entered Captcha code
+    		$isHuman = captcha_validate($this->request->data['CaptchaCode']);
+    		
+    		// clear previous user input, since each Captcha code can only be validated once
+    		unset($this->request->data['CaptchaCode']);
+
+    		if ($isHuman) {
+    			$user = $this->Auth->identify();
+	            if ($user) {
+	                $this->Auth->setUser($user);
+	                $this->Flash->Success(__('Logged in!'));
+	                return $this->redirect($this->Auth->redirectUrl());
+	            }
+	            $this->Flash->error(__('Invalid username or password, try again'));
     		} else {
-    			$this->Flash->error('Invalid username or password, please try again' . ' | ' . print_r($Account, true));
+    			$this->Flash->error(__('CAPTCHA validation failed, please try again.'));
     		}
     	}
     }
@@ -69,16 +71,16 @@ class VdbController extends AppController {
     }
     
     public function register() {
-    	$Account = new Account;
+    	$user = $this->Users->newEntity();
     	if ($this->request->is('post')) {
-    		$Account = $this->Accounts->patchEntity($Account, $this->request->data);
-    		if ($this->Accounts->save($Account)) {
-    			$this->Flash->success('Registered!');
-    			return $this->redirect(['action' => 'register']);
-    		}
-    		$this->Flash->error('Unable to register the email as a user.');
+    		$user = $this->Users->patchEntity($user, $this->request->data);
+    		if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('Unable to add the user.'));
     	}
-    	$this->set('Account', $Account);
+    	$this->set('user', $user);
     }
     
     public function details() {
