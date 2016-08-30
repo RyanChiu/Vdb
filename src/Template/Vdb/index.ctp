@@ -2,41 +2,57 @@
 <div class="homepage-slider">
 	<div id="sequence">
 		<ul class="sequence-canvas">
-			<!-- Slide 1 -->
-			<li class="bg4">
-				<!-- Slide Title -->
-				<h2 class="title">Mustang</h2> <!-- Slide Text -->
-				<h3 class="subtitle">So buckle in and put your hands on the wheel
-					of a Mustang!</h3> <!-- Slide Image --> <img class="slide-img"
-				src="img/homepage-slider/slide1.png" alt="Slide 1" style="width:400px;"/>
-			</li>
-			<!-- End Slide 1 -->
 			<!-- Slide 2 -->
 			<li class="bg3">
+				<!-- Slide Left Content -->
 				<!-- Slide Title -->
-				<h2 class="title">Mercedes-Benz</h2> <!-- Slide Text -->
-				<h3 class="subtitle">The fastest way to a man's heart is through 
-					his right foot.</h3> <!-- Slide Image --> <img class="slide-img"
-				src="img/homepage-slider/slide2.png" alt="Slide 2" style="width:400px;"/>
+				<h2 class="title">Find you car here, please.</h2>
+				<!-- Slide Text -->  
+				<div class="subtitle">
+					<form class="form-inline">
+						<div class="row">
+							<div class="col-xs-6">
+								<select class="form-control" style="width:100%">
+									<option value="0">Any Make</option>
+									<option value="1">FIAT</option>
+								</select>
+							</div>
+							<div class="col-xs-6">
+								<select class="form-control" style="width:100%">
+									<option value="0">Any Model</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6" style="font-size:x-small;font-weight:bold;color:white;">
+								Ex:FIAT
+							</div>
+							<div class="col-xs-6" style="font-size:x-small;font-weight:bold;color:white;">
+								Ex:FIAT 500
+							</div>
+						</div>
+						<div class="row" style="margin-top:6px;">
+							<div class="col-xs-6">
+								<select class="form-control" style="width:100%">
+									<option value="0">Any Price</option>
+									<option value="1">00.00</option>
+								</select>
+							</div>
+							<div class="col-xs-3">
+								<input type="text" class="form-control" style="width:100%" placeholder="zip code">
+							</div>
+							<div class="col-xs-3">
+								<button type="submit" class="btn btn-default" style="width:100%">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- Slide Image --> 
+				<img class="slide-img"
+					src="img/homepage-slider/slide2.png" alt="Slide 2" style="width:400px;"/>
 			</li>
 			<!-- End Slide 2 -->
-			<!-- Slide 3 -->
-			<li class="bg1">
-				<!-- Slide Title -->
-				<h2 class="title">Bentley</h2> <!-- Slide Text -->
-				<h3 class="subtitle">With an unparalleled 95-year heritage!
-					</h3> <!-- Slide Image --> <img class="slide-img"
-				src="img/homepage-slider/slide3.png" alt="Slide 3" style="width:400px;"/>
-			</li>
-			<!-- End Slide 3 -->
 		</ul>
-		<div class="sequence-pagination-wrapper">
-			<ul class="sequence-pagination">
-				<li>1</li>
-				<li>2</li>
-				<li>3</li>
-			</ul>
-		</div>
 	</div>
 </div>
 <!-- End Homepage Slider -->
