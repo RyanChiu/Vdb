@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
-use App\Model\Entity\User;
 
 class VdbController extends AppController {
 	public function initialize()
@@ -20,8 +19,7 @@ class VdbController extends AppController {
             ],
             'logoutRedirect' => [
                 'controller' => 'Vdb',
-                'action' => 'login',
-                'home'
+                'action' => 'login'
             ]
         ]);
         
@@ -35,10 +33,18 @@ class VdbController extends AppController {
 	}
 	
     public function index() {
-    	
+    	if ($this->Auth->user()) {
+    		$this->set("username", $this->Auth->user("username"));
+    	} else {
+    		$this->set("username", "");
+    	}
     }
     
     public function login() {
+    	if ($this->Auth->user()) {
+    		return $this->redirect($this->Auth->redirectUrl());
+    	}
+    	
     	// load the Captcha component and set its parameter
     	$this->loadComponent('CakeCaptcha.Captcha', [
 			'captchaConfig' => 'LoginCaptcha'

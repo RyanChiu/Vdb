@@ -60,9 +60,6 @@
 				<div class="menuextras">
 					<div class="extras">
 						<ul>
-							<li class="shopping-cart-items"><i
-								class="glyphicon glyphicon-shopping-cart icon-white"></i> <a
-								href="page-shopping-cart.html"><b><?php echo 0;?> items</b></a></li>
 							<li>
 								<div class="dropdown choose-country">
 									<a class="#" data-toggle="dropdown" href="#"><img src="img/flags/us.png"
@@ -77,7 +74,28 @@
 									</ul>
 								</div>
 							</li>
-							<li><a href="login">Login/Register</a></li>
+							<li class="shopping-cart-items"><i
+								class="glyphicon glyphicon-shopping-cart icon-white"></i> <a
+								href="page-shopping-cart.html"><b><?php echo 0;?> items</b></a>
+							</li>
+							<li>
+								<?php 
+								if (empty($username)) {
+								?>
+									<a href="login">Login/Register</a>
+								<?php 
+								} else {
+								?>
+									<i class="glyphicon glyphicon-user icon-white"></i>
+									<?= $username ?>
+									<a href="logout" style="margin-left:12px;">
+										<i class="glyphicon glyphicon-log-out icon-white"></i>
+										<b>logout</b>
+									</a>
+								<?php 
+								}
+								?>
+							</li>
 						</ul>
 					</div>
 				</div>
