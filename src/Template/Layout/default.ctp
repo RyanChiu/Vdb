@@ -89,16 +89,6 @@
 						</li>
 						<li class="active"><a href=".">Home</a></li>
 						<li><a href="details">Details</a></li>
-						<li>
-							<div class="cart-promo-code">
-								<div class="input-group">
-									<input class="form-control input-sm" id="appendedInputButton" type="text" value="">
-									<span class="input-group-btn">
-										<button class="btn btn-sm btn-grey" type="button">Search</button>
-									</span>
-								</div>
-							</div>
-						</li>
 					</ul>
 				</nav>
 			</div>
