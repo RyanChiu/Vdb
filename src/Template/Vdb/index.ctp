@@ -9,7 +9,7 @@
 				<h2 class="title">Find you car here, please.</h2>
 				<!-- Slide Text -->  
 				<div class="subtitle">
-					<form class="form-inline">
+					<form class="form-inline" action="/vdb/details">
 						<div class="row">
 							<div class="col-xs-6">
 								<select class="form-control" style="width:100%">

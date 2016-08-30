@@ -29,7 +29,7 @@ class VdbController extends AppController {
 	public function beforeFilter(Event $event)
 	{
 		parent::beforeFilter($event);
-		$this->Auth->allow(['index', 'login', 'register']);
+		$this->Auth->allow(['index', 'details', 'login', 'register']);
 	}
 	
     public function index() {
