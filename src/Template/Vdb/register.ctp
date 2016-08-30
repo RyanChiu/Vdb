@@ -24,23 +24,36 @@
 							-->
 							<?= $this->Form->input('username', array('label' => false, 'class' => 'form-control', 'type' => 'text', 'placeholder' => '')) ?>
 						</div>
-						<div class="form-group">
-							<label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
-							<!--  
-							<input class="form-control" id="register-password"
-								type="password" placeholder="">
-							-->
-							<?= $this->Form->input('password', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
+								<!--  
+								<input class="form-control" id="register-password"
+									type="password" placeholder="">
+								-->
+								<?= $this->Form->input('password', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="register-password2"><i class="icon-lock"></i> <b>Re-enter
+									Password</b></label>
+								<!--   
+								<input class="form-control"
+									id="register-password2" type="password" placeholder="">
+								-->
+								<?= $this->Form->input('password2', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
+							</div>
 						</div>
 						<div class="form-group">
-							<label for="register-password2"><i class="icon-lock"></i> <b>Re-enter
-								Password</b></label>
-							<!--   
-							<input class="form-control"
-								id="register-password2" type="password" placeholder="">
-							-->
-							<?= $this->Form->input('password2', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
-						</div>
+							<!-- show captcha image html -->
+						    <?= captcha_image_html() ?>
+						
+						    <!-- Captcha code user input textbox -->
+						    <?= $this->Form->input('CaptchaCode', [
+						      'label' => 'Retype the characters from the picture:',
+						      'maxlength' => '10',
+						      'id' => 'CaptchaCode'
+						    ]) ?>
+						</div> 
 						<div class="form-group">
 							<button type="submit" class="btn pull-right">Register</button>
 							<div class="clearfix"></div>

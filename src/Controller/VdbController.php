@@ -71,14 +71,29 @@ class VdbController extends AppController {
     }
     
     public function register() {
+    	// load the Captcha component and set its parameter
+    	$this->loadComponent('CakeCaptcha.Captcha', [
+    		'captchaConfig' => 'LoginCaptcha'
+    	]);
+    	
     	$user = $this->Users->newEntity();
     	if ($this->request->is('post')) {
-    		$user = $this->Users->patchEntity($user, $this->request->data);
-    		if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('Unable to add the user.'));
+    		// validate the user-entered Captcha code
+    		$isHuman = captcha_validate($this->request->data['CaptchaCode']);
+    		
+    		// clear previous user input, since each Captcha code can only be validated once
+    		unset($this->request->data['CaptchaCode']);
+    		
+    		if ($isHuman) {
+	    		$user = $this->Users->patchEntity($user, $this->request->data);
+	    		if ($this->Users->save($user)) {
+	                $this->Flash->success(__('The user has been saved.'));
+	                return $this->redirect(['action' => 'index']);
+	            }
+	            $this->Flash->error(__('Unable to add the user.'));
+    		} else {
+    			$this->Flash->error(__('CAPTCHA validation failed, please try again.'));
+    		}
     	}
     	$this->set('user', $user);
     }
