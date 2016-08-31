@@ -80,14 +80,16 @@
 							</li>
 							<li>
 								<?php 
-								if (empty($username)) {
+								if (empty($user)) {
 								?>
 									<a href="login">Login/Register</a>
 								<?php 
 								} else {
 								?>
-									<i class="glyphicon glyphicon-user icon-white"></i>
-									<?= $username ?>
+									<a href="profile">
+										<i class="glyphicon glyphicon-user icon-white"></i>
+										<?= $user['username'] ?>
+									</a>
 									<a href="logout" style="margin-left:12px;">
 										<i class="glyphicon glyphicon-log-out icon-white"></i>
 										<b>logout</b>

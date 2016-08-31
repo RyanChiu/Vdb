@@ -34,9 +34,9 @@ class VdbController extends AppController {
 	
     public function index() {
     	if ($this->Auth->user()) {
-    		$this->set("username", $this->Auth->user("username"));
+    		$this->set("user", $this->Auth->user());
     	} else {
-    		$this->set("username", "");
+    		$this->set("user", null);
     	}
     }
     
@@ -104,7 +104,22 @@ class VdbController extends AppController {
     	$this->set('user', $user);
     }
     
+    public function profile() {
+    	$user = $this->Users->newEntity();
+    	if (!$this->Auth->user()) {
+    		$this->set('user', null);
+    		return $this->redirect($this->Auth->redirectUrl());
+    	} else {
+    		$user = $this->Users->patchEntity($user, $this->Auth->user());
+    		$this->set(compact("user"));
+    	}
+    }
+    
     public function details() {
-    	
+    	if ($this->Auth->user()) {
+    		$this->set("user", $this->Auth->user());
+    	} else {
+    		$this->set("user", null);
+    	}
     }
 }
