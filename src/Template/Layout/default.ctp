@@ -146,5 +146,10 @@
 		<?= $this->Html->script('jquery.bxslider.js') ?>
 		<?= $this->Html->script('main-menu.js') ?>
 		<?= $this->Html->script('template.js') ?>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				// to do
+			});
+		</script>
 	</body>
 </html>

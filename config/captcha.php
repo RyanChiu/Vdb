@@ -6,9 +6,10 @@ return [
   // Captcha configuration for login page
   'LoginCaptcha' => [
     'UserInputID' => 'CaptchaCode',
-    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(5, 6),
+    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(5, 7),
   	'HelpLinkEnabled' => false,
-  	'ImageWidth' => 170,
+  	//'SoundEnabled' => false,
+  	//'ImageWidth' => 170,
     'ImageStyle' => [
       ImageStyle::Radar,
       ImageStyle::Collage,
@@ -19,10 +20,10 @@ return [
   // Captcha configuration for register page
   'RegisterCaptcha' => [
     'UserInputID' => 'CaptchaCode',
-    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(5, 6),
+    'CodeLength' => CaptchaRandomization::GetRandomCodeLength(5, 7),
     'CodeStyle' => CodeStyle::Alpha,
   	'HelpLinkEnabled' => false,
-  	'ImageWidth' => 170,
+  	//'ImageWidth' => 170,
     //'CustomLightColor' => '#9966FF',
   	'ImageStyle' => [
 		ImageStyle::Radar,

@@ -12,7 +12,8 @@
 <div class="section">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
 				<div class="basic-login">
 					<!-- <form role="form"> -->
 					<?= $this->Form->create($user)?>
@@ -54,7 +55,7 @@
 							    	'label' => '',
 									'class' => 'form-control',
 							    	'maxlength' => '10',
-							    	'placeholder' => 'CAPTCHA BotDetect',
+							    	'placeholder' => 'BotDetect code here, please.',
 							    	'id' => 'CaptchaCode'
 							    ]) ?>
 							</div>
@@ -67,13 +68,8 @@
 					<?= $this->Form->end() ?>
 				</div>
 			</div>
-			<div class="col-sm-6 col-sm-offset-1 social-login">
-				<p>You can use your Facebook or Twitter for registration (Coming soon...)</p>
-				<div class="social-login-buttons">
-					<a href="#" class="btn-facebook-login">Use Facebook</a> <a href="#"
-						class="btn-twitter-login">Use Twitter</a>
-				</div>
-			</div>
+			<div class="col-sm-2"></div>
 		</div>
+
 	</div>
 </div>

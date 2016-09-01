@@ -12,7 +12,7 @@
 <div class="section">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-sm-7">
 				<div class="basic-login">
 					<!-- <form role="form" role="form"> -->
 					<?= $this->Flash->render('auth') ?>
@@ -44,11 +44,11 @@
 							    	'label' => '',
 									'class' => 'form-control',
 							    	'maxlength' => '10',
-							    	'placeholder' => 'CAPTCHA BotDetect',
+							    	'placeholder' => 'BotDetect code here, please.',
 							    	'id' => 'CaptchaCode'
 							    ]) ?>
 							</div>
-						</div>   
+						</div>
 						<div class="form-group">
 							<label class="checkbox"> <input type="checkbox"> Remember me
 							</label> <a href="page-password-reset.html"
@@ -60,12 +60,7 @@
 					<?= $this->Form->end() ?>
 				</div>
 			</div>
-			<div class="col-sm-7 social-login">
-				<p>Or login with your Facebook or Twitter (Coming soon...)</p>
-				<div class="social-login-buttons">
-					<a href="#" class="btn-facebook-login">Login with Facebook</a> <a
-						href="#" class="btn-twitter-login">Login with Twitter</a>
-				</div>
+			<div class="col-sm-5 social-login">
 				<div class="clearfix"></div>
 				<div class="not-member">
 					<p>
