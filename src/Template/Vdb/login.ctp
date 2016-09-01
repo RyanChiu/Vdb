@@ -69,7 +69,17 @@
 				<div class="clearfix"></div>
 				<div class="not-member">
 					<p>
-						Not a member? <a href="register">Register here</a>
+						Not a member?
+					</p>
+				</div>
+				<div class="row">
+					<p>
+						<i class="glyphicon glyphicon-user"></i>
+						<b>Buyer</b> <a href="register">Register here</a>
+					</p>
+					<p>
+						<i class="glyphicon glyphicon-road"></i>
+						<b>Seller</b> <a href="register">Register here</a>
 					</p>
 				</div>
 			</div>
