@@ -62,7 +62,7 @@ class VdbController extends AppController {
 	            if ($user) {
 	                $this->Auth->setUser($user);
 	                $this->Flash->Success(__('Logged in!'));
-	                return $this->redirect($this->Auth->redirectUrl());
+	                return $this->redirect(['action' => 'index']);
 	            }
 	            $this->Flash->error(__('Invalid username or password, try again'));
     		} else {
@@ -82,7 +82,7 @@ class VdbController extends AppController {
     		'captchaConfig' => 'RegisterCaptcha'
     	]);
     	
-    	$user = $this->Users->newEntity();
+    	$user = null;
     	if ($this->request->is('post')) {
     		// validate the user-entered Captcha code
     		$isHuman = captcha_validate($this->request->data['CaptchaCode']);
@@ -91,6 +91,7 @@ class VdbController extends AppController {
     		unset($this->request->data['CaptchaCode']);
     		
     		if ($isHuman) {
+    			$user = $this->Users->newEntity();
 	    		$user = $this->Users->patchEntity($user, $this->request->data);
 	    		if ($this->Users->save($user)) {
 	                $this->Flash->success(__('The user has been saved.'));
