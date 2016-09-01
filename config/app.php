@@ -343,6 +343,6 @@ return [
     'Session' => [
         'defaults' => 'cake',
     	'cookie' => 'my_app',
-    	'timeout' => 1440 // 1 day
+    	'timeout' => 180 // 1 day
     ],
 ];
