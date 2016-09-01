@@ -102,6 +102,17 @@ class VdbController extends AppController {
     			$this->Flash->error(__('CAPTCHA validation failed, please try again.'));
     		}
     	}
+    	
+    	$as = $this->request->query("as");
+    	if (empty($as)) {
+    		$this->set("as", 2);
+    	} else {
+    		if (in_array($as, [1, 2])) {
+    			$this->set(compact("as"));
+    		} else {
+    			$this->set("as", 2);
+    		}
+    	}
     	$this->set('user', $user);
     }
     

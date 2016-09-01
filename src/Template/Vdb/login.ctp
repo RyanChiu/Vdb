@@ -70,11 +70,11 @@
 				<div class="row">
 					<p>
 						<i class="glyphicon glyphicon-user"></i>
-						<b>Buyer</b> <a href="register">Register here</a>
+						<b>Buyer</b> <a href="register?as=2">Register here</a>
 					</p>
 					<p>
 						<i class="glyphicon glyphicon-road"></i>
-						<b>Seller</b> <a href="register">Register here</a>
+						<b>Seller</b> <a href="register?as=1">Register here</a>
 					</p>
 				</div>
 			</div>

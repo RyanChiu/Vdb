@@ -61,7 +61,22 @@
 							</div>
 						</div>	
 						<div class="form-group">
-							<button type="submit" class="btn pull-right">Register</button>
+							<?php
+							$role = -1;
+							$registerstr = "Register as a ";
+							if (empty($as)) {
+								$registerstr .= "buyer";
+								$role = 2;
+							}
+							else {
+								$registerstr .= ($as == 2 ? "buyer" : ($as == 1 ? "seller" : "buyer"));
+								$role = in_array($as, [1, 2]) ? $as : 2;
+							}
+							?>
+							<?= $this->Form->input('role', array('type' => 'hidden', 'value' => $role))?>
+							<button type="submit" class="btn pull-right">
+							<?= $registerstr . $role ?>
+							</button>
 							<div class="clearfix"></div>
 						</div>
 					<!-- </form> -->

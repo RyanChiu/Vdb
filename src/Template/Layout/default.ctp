@@ -76,7 +76,7 @@
 							</li>
 							<li class="shopping-cart-items"><i
 								class="glyphicon glyphicon-shopping-cart icon-white"></i> <a
-								href="page-shopping-cart.html"><b><?php echo 0;?> items</b></a>
+								href="#"><b><?php echo 0;?> items</b></a>
 							</li>
 							<li>
 								<?php 
