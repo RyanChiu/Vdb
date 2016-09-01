@@ -75,7 +75,7 @@
 							?>
 							<?= $this->Form->input('role', array('type' => 'hidden', 'value' => $role))?>
 							<button type="submit" class="btn pull-right">
-							<?= $registerstr . $role ?>
+							<?= $registerstr ?>
 							</button>
 							<div class="clearfix"></div>
 						</div>
