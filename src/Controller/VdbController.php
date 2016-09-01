@@ -79,7 +79,7 @@ class VdbController extends AppController {
     public function register() {
     	// load the Captcha component and set its parameter
     	$this->loadComponent('CakeCaptcha.Captcha', [
-    		'captchaConfig' => 'LoginCaptcha'
+    		'captchaConfig' => 'RegisterCaptcha'
     	]);
     	
     	$user = $this->Users->newEntity();

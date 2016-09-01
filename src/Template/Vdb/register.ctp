@@ -43,17 +43,22 @@
 								<?= $this->Form->input('password2', array('label' => false, 'class' => 'form-control', 'type' => 'password', 'placeholder' => ''))?>
 							</div>
 						</div>
-						<div class="form-group">
-							<!-- show captcha image html -->
-						    <?= captcha_image_html() ?>
-						
-						    <!-- Captcha code user input textbox -->
-						    <?= $this->Form->input('CaptchaCode', [
-						      'label' => 'Retype the characters from the picture:',
-						      'maxlength' => '10',
-						      'id' => 'CaptchaCode'
-						    ]) ?>
-						</div> 
+						<div class="row">
+							<div class="form-group col-md-6">
+								<!-- show captcha image html -->
+							    <?= captcha_image_html() ?>
+							</div>
+							<div class="form-group col-md-6">
+								<!-- Captcha code user input textbox -->
+							    <?= $this->Form->input('CaptchaCode', [
+							    	'label' => '',
+									'class' => 'form-control',
+							    	'maxlength' => '10',
+							    	'placeholder' => 'CAPTCHA BotDetect',
+							    	'id' => 'CaptchaCode'
+							    ]) ?>
+							</div>
+						</div>	
 						<div class="form-group">
 							<button type="submit" class="btn pull-right">Register</button>
 							<div class="clearfix"></div>
