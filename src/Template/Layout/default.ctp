@@ -108,13 +108,14 @@
 							alt="Multipurpose Twitter Bootstrap Template"></a>
 						</li>
 						<li class="active"><a href=".">Cars for Sale</a></li>
-						<li><a href="details">Sell My Car</a></li>
-						<li><a href="details">Trade in My Car</a></li>
-						<li><a href="details">Car Research & Reviews</a></li>
+						<li><a href="#">Sell My Car</a></li>
+						<li><a href="#">Trade in My Car</a></li>
+						<li><a href="#">Car Research & Reviews</a></li>
 					</ul>
 				</nav>
 			</div>
 		</div>
+		
 	    <?= $this->fetch('content') ?>
     
 	    <!-- Footer -->
