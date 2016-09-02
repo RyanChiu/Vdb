@@ -107,8 +107,10 @@
 							src="img/mPurpose-logo.png"
 							alt="Multipurpose Twitter Bootstrap Template"></a>
 						</li>
-						<li class="active"><a href=".">Home</a></li>
-						<li><a href="details">Details</a></li>
+						<li class="active"><a href=".">Cars for Sale</a></li>
+						<li><a href="details">Sell My Car</a></li>
+						<li><a href="details">Trade in My Car</a></li>
+						<li><a href="details">Car Research & Reviews</a></li>
 					</ul>
 				</nav>
 			</div>
