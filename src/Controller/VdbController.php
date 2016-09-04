@@ -24,6 +24,8 @@ class VdbController extends AppController {
         ]);
         
         $this->Users = TableRegistry::get("Users");
+        $this->Cars = TableRegistry::get("Cars");
+        $this->Locals = TableRegistry::get("Locals");
 	}
 	
 	public function beforeFilter(Event $event)
@@ -38,6 +40,22 @@ class VdbController extends AppController {
     	} else {
     		$this->set("user", null);
     	}
+    	
+    	/**
+    	 * show picked 4 cars
+    	 */
+    	$query = $this->Cars->find();
+    	$query->hydrate(false);
+    	$rs4 = $query
+    		->contain(['Locals'
+    			=> function ($q) {
+    				return $q
+    					->where(['Locals.zip' => '85550']);
+    			}
+    		])
+    		->limit(4)
+    		->toList();
+    	$this->set(compact("rs4"));
     }
     
     public function login() {
