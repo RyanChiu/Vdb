@@ -95,11 +95,11 @@
 						<div class="portfolio-item"><div class="portfolio-image">
 							<img src="/vdb/img/cars/<?= $r['image'] ?>" />
 						</div></div>
-						<p class="pricing-plan-price">$<?= $r['locals']['0']['price'] ?></p>
+						<p class="pricing-plan-price">$<?= number_format($r['locals']['0']['price']) ?></p>
 						<ul class="pricing-plan-features">
 							<li><strong><?= $r['name'] ?></strong> <?= $r['model'] ?></li>
 						</ul>
-						<a href="index.html" class="btn">Order Now</a>
+						<a href="#" class="btn">Order Now</a>
 					</div>
 					<!-- End Pricing Plan -->
 				<?php 
