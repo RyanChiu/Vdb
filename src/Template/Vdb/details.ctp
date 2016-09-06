@@ -185,5 +185,5 @@
 	</div>
 </div>
 <!-- for debug begin -->
-<?php echo str_replace("\n", "<br/>", print_r($rs, true)); ?>
+<?php //echo str_replace("\n", "<br/>", print_r($rs, true)); ?>
 <!-- for debug end -->
