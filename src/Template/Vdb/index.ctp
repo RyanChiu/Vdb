@@ -9,17 +9,26 @@
 				<h2 class="title">Find you car here, please.</h2>
 				<!-- Slide Text -->  
 				<div class="subtitle">
-					<form class="form-inline" action="/vdb/details">
+					<?= $this->Form->create(null, ['class' => 'form-inline', 'url' => '/vdb/details']) ?>
+					<!-- <form class="form-inline" action="/vdb/details"> -->
 						<div class="row">
 							<div class="col-xs-6">
-								<select class="form-control" style="width:100%">
-									<option value="0">Any Make</option>
-									<option value="1">FIAT</option>
+								<select name="make" id="SearchMake" class="form-control" style="width:100%">
+									<option value="-1">Any Make</option>
+									<?php
+									$im = 0;
+									foreach ($makes as $make) {
+										$im++
+									?>
+										<option value="<?= $make['make'] ?>"><?= $make['make'] ?></option>
+									<?php
+									}
+									?>
 								</select>
 							</div>
 							<div class="col-xs-6">
-								<select class="form-control" style="width:100%">
-									<option value="0">Any Model</option>
+								<select name="model" id="SearchModel" class="form-control" style="width:100%">
+									<option value="-1">Any Model</option>
 								</select>
 							</div>
 						</div>
@@ -33,19 +42,59 @@
 						</div>
 						<div class="row" style="margin-top:6px;">
 							<div class="col-xs-6">
-								<select class="form-control" style="width:100%">
-									<option value="0">Any Price</option>
-									<option value="1">00.00</option>
+								<select name="price" id="SearchPrice" class="form-control" style="width:100%">
+									<option value="-1">Any Price</option>
+									<?php
+									$pstep = 1000;
+									for ($ip = 1000; $ip <= 100000; $ip += $pstep) {
+									?>
+										<option value="<?= $ip ?>">Under $<?= number_format($ip) ?></option>
+									<?php 
+										if ($ip >= 20000 and $ip < 30000) {
+											$pstep = 2000;
+										} else if ($ip >= 30000) {
+											$pstep = 5000;
+										}
+									}
+									?>
 								</select>
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control" style="width:100%" placeholder="zip code">
+								<input name="zip" type="text" class="form-control" style="width:100%" placeholder="zip code">
 							</div>
 							<div class="col-xs-3">
 								<button type="submit" class="btn btn-default" style="width:100%">Search</button>
 							</div>
 						</div>
-					</form>
+					<!-- </form> -->
+					<?= $this->Form->end() ?>
+					<!-- jQuery part for the form above begin -->
+					<script type="text/javascript">
+					jQuery("#SearchMake").change(function() {
+						var xmlhttp;
+						if (window.XMLHttpRequest)
+						{// code for IE7+, Firefox, Chrome, Opera, Safari
+							xmlhttp=new XMLHttpRequest();
+						}
+						else
+						{// code for IE6, IE5
+							xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+							// do nothing here for now
+						}
+						if (xmlhttp) {
+							xmlhttp.onreadystatechange=function() {
+								if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+									//alert(xmlhttp.responseText);// for debug
+									jQuery("#SearchModel").empty();
+									jQuery("#SearchModel").append(xmlhttp.responseText);
+								}
+							}
+							xmlhttp.open("GET", "asyncs?make=" + jQuery("#SearchMake").find("option:selected").text() + "&t=" + Math.random(), true);
+							xmlhttp.send();
+						}
+					});
+					</script>
+					<!-- jQuery part for the form above end -->
 				</div>
 				<!-- Slide Image --> 
 				<img class="slide-img"
@@ -111,3 +160,6 @@
 	</div>
 </div>
 <!-- End Pricing Table -->
+<!-- for debug begin -->
+<?php //echo str_replace("\n", "<br/>", print_r($makes, true)) . "#$"; ?>
+<!-- for debug end -->

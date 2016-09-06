@@ -31,7 +31,7 @@ class VdbController extends AppController {
 	public function beforeFilter(Event $event)
 	{
 		parent::beforeFilter($event);
-		$this->Auth->allow(['index', 'details', 'login', 'register']);
+		$this->Auth->allow(['index', 'details', 'login', 'register', 'asyncs']);
 	}
 	
     public function index() {
@@ -40,6 +40,17 @@ class VdbController extends AppController {
     	} else {
     		$this->set("user", null);
     	}
+    	
+    	/**
+    	 * fill in the data of search block
+    	 */
+    	$query = $this->Cars->find();
+    	$query->hydrate(false);
+    	$makes = $query
+    		->select(["make"])
+    		->distinct(["make"])
+    		->toList();
+    	$this->set(compact("makes"));
     	
     	/**
     	 * show picked 4 cars
@@ -134,6 +145,19 @@ class VdbController extends AppController {
     	$this->set('user', $user);
     }
     
+    public function asyncs() {
+    	$this->viewBuilder()->layout("ajax");
+    	$query = $this->Cars->find();
+    	$query->hydrate(false);
+    	if ($make = $this->request->query("make")) {
+    		$models = $query
+    			->select(['model'])
+    			->where(['make' => $make])
+    			->toList();
+    		$this->set(compact("models"));
+    	}
+    }
+    
     public function profile() {
     	$user = $this->Users->newEntity();
     	if (!$this->Auth->user()) {
@@ -150,6 +174,24 @@ class VdbController extends AppController {
     		$this->set("user", $this->Auth->user());
     	} else {
     		$this->set("user", null);
+    	}
+    	
+    	if ($this->request->is("post")) {
+    		$data = $this->request->data;
+    		$query = $this->Cars->find();
+    		$query->hydrate(false);
+    		$rs = $query
+    			->contain(['Locals'
+    				=> function ($q) use ($data) {
+    					return $q
+    						->where(['Locals.zip' => $data['zip'], 'Locals.price <=' => $data['price'],]);
+    				}
+    			])
+    			->where(['make' => $data['make'], 'model' => $data['model'],])
+    			->toList();
+    		$this->set(compact('rs'));
+    	} else {
+    		// to do
     	}
     }
 }

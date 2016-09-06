@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>Product Details</h1>
+				<h1>Search Result</h1>
 			</div>
 		</div>
 	</div>
@@ -12,10 +12,14 @@
 <div class="section">
 	<div class="container">
 		<div class="row">
+			<?php
+			if (!empty($rs)) {
+				foreach ($rs as $r) {
+			?>
 			<!-- Product Image & Available Colors -->
 			<div class="col-sm-6">
 				<div class="product-image-large">
-					<img src="img/peugeot.jpg" alt="Item Name">
+					<img src="img/cars/<?= $r['image'] ?>" alt="Item Name">
 				</div>
 				<div class="colors">
 					<span class="color-white"></span> <span class="color-black"></span>
@@ -26,9 +30,9 @@
 			<!-- End Product Image & Available Colors -->
 			<!-- Product Summary & Options -->
 			<div class="col-sm-6 product-details">
-				<h4>PEUGEOT SR1</h4>
+				<h4><?= $r['make'] ?> <?= $r['model'] ?></h4>
 				<div class="price">
-					<span class="price-was">$11959.99</span> $10009.99
+					<span class="price-was">$<?= !empty($r['locals'])? $r['locals'][0]['price'] : "" ?></span> $<?= !empty($r['locals']) ? $r['locals'][0]['price'] : "no such a price" ?>
 				</div>
 				<h5>Quick Overview</h5>
 				<p>Morbi eleifend congue elit nec sagittis. Praesent aliquam
@@ -171,6 +175,15 @@
 				</div>
 			</div>
 			<!-- End Full Description & Specification -->
+			<?php
+				}
+			} else {
+				echo "No cars found, please try again.";
+			}
+			?>
 		</div>
 	</div>
 </div>
+<!-- for debug begin -->
+<?php echo str_replace("\n", "<br/>", print_r($rs, true)); ?>
+<!-- for debug end -->
