@@ -187,7 +187,7 @@ class VdbController extends AppController {
     			->contain(['Locals'
     				=> function ($q) use ($data) {
     					$where = ['Locals.zip' => $data['zip']];
-    					$where += $data['price'] == -1 ? [1 => 1] : ['price' => $data['price']];
+    					$where += $data['underprice'] == -1 ? [1 => 1] : ['(price - discount) <=' => $data['underprice']];
     					return $q
     						->where($where);
     				}
@@ -196,6 +196,7 @@ class VdbController extends AppController {
     			->toList();
     		$this->set(compact('rs'));
     		$this->set("zip", $data['zip']);
+    		$this->set("underprice", $data['underprice']);
     	} else {
     		// to do
     	}

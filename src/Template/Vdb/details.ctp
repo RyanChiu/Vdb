@@ -6,9 +6,10 @@
 				<h1>Search Result</h1>
 			</div>
 			<div class="col-md-10">
-				<font style="color:white;font-size:small;">
-					(zip code: <?= isset($zip) ? $zip : 'none' ?>)
-				</font>
+				<ur style="color:white;">
+					<li>zip code: <?= isset($zip) ? $zip : '' ?></li>
+					<li>under price: <?= isset($underprice) && $underprice != -1 ? $underprice : 'no limit' ?></li>
+				</ur>
 			</div>
 		</div>
 	</div>

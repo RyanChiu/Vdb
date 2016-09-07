@@ -42,7 +42,7 @@
 						</div>
 						<div class="row" style="margin-top:6px;">
 							<div class="col-xs-6">
-								<select name="price" id="SearchPrice" class="form-control" style="width:100%">
+								<select name="underprice" id="SearchUnderPrice" class="form-control" style="width:100%">
 									<option value="-1">Any Price</option>
 									<?php
 									$pstep = 1000;
