@@ -180,16 +180,22 @@ class VdbController extends AppController {
     		$data = $this->request->data;
     		$query = $this->Cars->find();
     		$query->hydrate(false);
+    		$where = [];
+    		$where += $data['make'] == -1 ? [1 => 1] : ['make' => $data['make']];
+    		$where += $data['model'] == -1 ? [1 => 1] : ['model' => $data['model']];
     		$rs = $query
     			->contain(['Locals'
     				=> function ($q) use ($data) {
+    					$where = ['Locals.zip' => $data['zip']];
+    					$where += $data['price'] == -1 ? [1 => 1] : ['price' => $data['price']];
     					return $q
-    						->where(['Locals.zip' => $data['zip'], 'Locals.price <=' => $data['price'],]);
+    						->where($where);
     				}
     			])
-    			->where(['make' => $data['make'], 'model' => $data['model'],])
+    			->where($where)
     			->toList();
     		$this->set(compact('rs'));
+    		$this->set("zip", $data['zip']);
     	} else {
     		// to do
     	}

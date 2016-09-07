@@ -2,8 +2,13 @@
 <div class="section section-breadcrumbs">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-2">
 				<h1>Search Result</h1>
+			</div>
+			<div class="col-md-10">
+				<font style="color:white;font-size:small;">
+					(zip code: <?= isset($zip) ? $zip : 'none' ?>)
+				</font>
 			</div>
 		</div>
 	</div>
@@ -11,11 +16,14 @@
 
 <div class="section">
 	<div class="container">
+		<?php
+		if (!empty($rs)) {
+			$il = 0;
+			foreach ($rs as $r) {
+				foreach ($r['locals'] as $local) {
+					$il++;
+		?>
 		<div class="row">
-			<?php
-			if (!empty($rs)) {
-				foreach ($rs as $r) {
-			?>
 			<!-- Product Image & Available Colors -->
 			<div class="col-sm-6">
 				<div class="product-image-large">
@@ -30,14 +38,12 @@
 			<!-- End Product Image & Available Colors -->
 			<!-- Product Summary & Options -->
 			<div class="col-sm-6 product-details">
-				<h4><?= $r['make'] ?> <?= $r['model'] ?></h4>
+				<h4><?= $r['make'] ?> (<?= $r['name'] . $r['model'] ?>)</h4>
 				<div class="price">
-					<span class="price-was">$<?= !empty($r['locals'])? $r['locals'][0]['price'] : "" ?></span> $<?= !empty($r['locals']) ? $r['locals'][0]['price'] : "no such a price" ?>
+					<span class="price-was">$<?= $local['price'] ?></span> $<?= $local['price'] - $local['discount'] ?>
 				</div>
 				<h5>Quick Overview</h5>
-				<p>Morbi eleifend congue elit nec sagittis. Praesent aliquam
-					lobortis tellus, nec consequat massa ornare vitae. Ut fermentum
-					justo vel venenatis eleifend. Fusce id magna eros.</p>
+				<p><?= $r['brief'] ?></p>
 				<table class="shop-item-selections">
 					<!-- Color Selector -->
 					<tr>
@@ -100,42 +106,16 @@
 				<div class="tabbable">
 					<!-- Tabs -->
 					<ul class="nav nav-tabs product-details-nav">
-						<li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
-						<li><a href="#tab2" data-toggle="tab">Specification</a></li>
+						<li class="active"><a href="#tab1_<?= $il ?>" data-toggle="tab">Description</a></li>
+						<li><a href="#tab2_<?= $il ?>" data-toggle="tab">Specification</a></li>
 					</ul>
 					<!-- Tab Content (Full Description) -->
 					<div class="tab-content product-detail-info">
-						<div class="tab-pane active" id="tab1">
-							<h4>Product Description</h4>
-							<p>Donec hendrerit massa metus, a ultrices elit iaculis eu.
-								Pellentesque ullamcorper augue lacus. Phasellus et est quis diam
-								iaculis fringilla id nec sapien. Sed tempor ornare felis, non
-								vulputate dolor. Etiam ornare diam vitae ligula malesuada
-								tempor. Vestibulum nec odio vel libero ullamcorper euismod et in
-								sapien. Suspendisse potenti.</p>
-							<h4>Product Highlights</h4>
-							<ul>
-								<li>Nullam dictum augue nec iaculis rhoncus. Aenean lobortis
-									fringilla orci, vitae varius purus eleifend vitae.</li>
-								<li>Nunc ornare, dolor a ultrices ultricies, magna dolor
-									convallis enim, sed volutpat quam sem sed tellus.</li>
-								<li>Aliquam malesuada cursus urna a rutrum. Ut ultricies
-									facilisis suscipit.</li>
-								<li>Duis a magna iaculis, aliquam metus in, luctus eros.</li>
-								<li>Aenean nisi nibh, imperdiet sit amet eleifend et, gravida
-									vitae sem.</li>
-								<li>Donec quis nisi congue, ultricies massa ut, bibendum velit.</li>
-							</ul>
-							<h4>Usage Information</h4>
-							<p>Donec hendrerit massa metus, a ultrices elit iaculis eu.
-								Pellentesque ullamcorper augue lacus. Phasellus et est quis diam
-								iaculis fringilla id nec sapien. Sed tempor ornare felis, non
-								vulputate dolor. Etiam ornare diam vitae ligula malesuada
-								tempor. Vestibulum nec odio vel libero ullamcorper euismod et in
-								sapien. Suspendisse potenti.</p>
+						<div class="tab-pane active" id="tab1_<?= $il ?>">
+							<?= $r['detail'] ?>
 						</div>
 						<!-- Tab Content (Specification) -->
-						<div class="tab-pane" id="tab2">
+						<div class="tab-pane" id="tab2_<?= $il ?>">
 							<table>
 								<tr>
 									<td>Total sensor Pixels (megapixels)</td>
@@ -175,13 +155,18 @@
 				</div>
 			</div>
 			<!-- End Full Description & Specification -->
-			<?php
+		</div>
+		<hr style="border-width:1px;border-color:grey;"/>
+		<?php
 				}
-			} else {
+			}
+			if ($il == 0) {
 				echo "No cars found, please try again.";
 			}
-			?>
-		</div>
+		} else {
+			echo "No cars found, please try again0.";
+		}
+		?>
 	</div>
 </div>
 <!-- for debug begin -->
