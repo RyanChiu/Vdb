@@ -2,10 +2,10 @@
 <div class="section section-breadcrumbs">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-				<h1>Search Result</h1>
+			<div class="col-md-3">
+				<h1 id="CarsFoundTitle">Cars found for you</h1>
 			</div>
-			<div class="col-md-10">
+			<div class="col-md-9">
 				<ur style="color:white;">
 					<li>zip code: <?= isset($zip) ? $zip : '' ?></li>
 					<li>under price: <?= isset($underprice) && $underprice != -1 ? $underprice : 'no limit' ?></li>
@@ -108,7 +108,7 @@
 					<!-- Tabs -->
 					<ul class="nav nav-tabs product-details-nav">
 						<li class="active"><a href="#tab1_<?= $il ?>" data-toggle="tab">Description</a></li>
-						<li><a href="#tab2_<?= $il ?>" data-toggle="tab">Specification</a></li>
+						<li><a href="#tab2_<?= $il ?>" data-toggle="tab">Features</a></li>
 					</ul>
 					<!-- Tab Content (Full Description) -->
 					<div class="tab-content product-detail-info">
@@ -119,36 +119,48 @@
 						<div class="tab-pane" id="tab2_<?= $il ?>">
 							<table>
 								<tr>
-									<td>Total sensor Pixels (megapixels)</td>
-									<td>Approx. 16.7</td>
+									<td>FUEL ECONOMY (CTY/HWY)</td>
+									<td>00/00 mpg</td>
 								</tr>
 								<tr>
-									<td>Effective Pixels (megapixels)</td>
-									<td>Approx. 16.1</td>
+									<td>ENGINE TYPE</td>
+									<td>Gas</td>
 								</tr>
 								<tr>
-									<td>Automatic White Balance</td>
-									<td>YES</td>
+									<td>CAR TYPE</td>
+									<td>--</td>
 								</tr>
 								<tr>
-									<td>White balance: preset selection</td>
-									<td>Daylight, Shade, Cloudy, Incandescent, Fluorescent, Flash</td>
+									<td>TRANSMISSION</td>
+									<td>x-speed Shiftable Automatic</td>
 								</tr>
 								<tr>
-									<td>White balance: custom setting</td>
-									<td>YES</td>
+									<td>BASIC WARRANTY</td>
+									<td>--</td>
 								</tr>
 								<tr>
-									<td>White balance: types of color temperature</td>
-									<td>YES (G7 to M7,15-step) (A7 to B7,15-step)</td>
+									<td>TOTAL SEATING</td>
+									<td>--</td>
 								</tr>
 								<tr>
-									<td>White balance bracketing</td>
-									<td>NO</td>
+									<td>CYLINDERS</td>
+									<td>--</td>
 								</tr>
 								<tr>
-									<td>ISO Sensitivity Setting</td>
-									<td>ISO100 - 25600 equivalent</td>
+									<td>DRIVE TRAIN</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>BLUETOOTH</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>HEATED SEATS</td>
+									<td>--</td>
+								</tr>
+								<tr>
+									<td>NAVIGATION</td>
+									<td>--</td>
 								</tr>
 							</table>
 						</div>
@@ -163,9 +175,15 @@
 			}
 			if ($il == 0) {
 				echo "No cars found, please try again.";
+			} else {
+		?>
+			<script type="text/javascript">
+			jQuery("#CarsFoundTitle").text("<?= $il ?> cars found for you");
+			</script>
+		<?php 
 			}
 		} else {
-			echo "No cars found, please try again0.";
+			echo "No cars found, please try again.";
 		}
 		?>
 	</div>
