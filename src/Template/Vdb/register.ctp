@@ -48,6 +48,9 @@
 							<div class="form-group col-md-6">
 								<!-- show captcha image html -->
 							    <?= captcha_image_html() ?>
+							    <script type="text/javascript">
+							    jQuery("[title$='Validation']").text('enter the code to the right, please').attr('href', '#CaptchaCode').removeAttr('title');
+							    </script>
 							</div>
 							<div class="form-group col-md-6">
 								<!-- Captcha code user input textbox -->
