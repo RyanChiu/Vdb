@@ -212,3 +212,8 @@ if (Configure::read('debug')) {
 
 Plugin::load('Migrations');
 Plugin::load('CakeCaptcha', ['routes' => true]);
+
+/*
+ * SELF-DEFINED CONSTANT
+ */
+define("EDMUNDS_API_KEY", "bqakcm4rdhqt8kgmjchxchn6");
