@@ -5,7 +5,7 @@ if (isset($models)) {
 <?php
 	foreach ($models as $model) {
 ?>
-		<option value="<?= $model['model'] ?>"><?= $model['model'] ?></option>
+		<option value="<?= $model['id'] ?>"><?= $model['name'] ?></option>
 <?php 
 	}
 }

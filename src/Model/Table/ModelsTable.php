@@ -1,16 +1,16 @@
 <?php
-// src/Model/Table/LocalsTable.php
+// src/Model/Table/ModelsTable.php
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class LocalsTable extends Table
+class ModelsTable extends Table
 {
 	public function initialize(array $config)
 	{
 		$this->addAssociations([
-			'belongsTo' => ['Cars'
-				=> ['foreignKey' => 'carid']
+			'belongsTo' => ['Makes'
+				=> ['foreignKey' => 'makeid']
 			]
 		]);
 	}

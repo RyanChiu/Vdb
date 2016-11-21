@@ -5,6 +5,8 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 
+include __DIR__ . "/../ZDriver/includes/constants.php";
+
 class VdbController extends AppController {
 	public function initialize()
 	{
@@ -26,6 +28,9 @@ class VdbController extends AppController {
         $this->Users = TableRegistry::get("Users");
         $this->Cars = TableRegistry::get("Cars");
         $this->Locals = TableRegistry::get("Locals");
+        $this->Makes  = TableRegistry::get("Makes");
+        $this->Models = TableRegistry::get("Models");
+        
 	}
 	
 	public function beforeFilter(Event $event)
@@ -34,6 +39,9 @@ class VdbController extends AppController {
 		$this->Auth->allow(['index', 'details', 'login', 'register', 'asyncs']);
 	}
 	
+	/**
+	 * pages below
+	 */
     public function index() {
     	if ($this->Auth->user()) {
     		$this->set("user", $this->Auth->user());
@@ -44,12 +52,17 @@ class VdbController extends AppController {
     	/**
     	 * fill in the data of search block
     	 */
-    	$query = $this->Cars->find();
+    	$query = $this->Makes->find();
     	$query->hydrate(false);
     	$makes = $query
-    		->select(["make"])
-    		->distinct(["make"])
+    		->select(["id", "name", "niceName"])
     		->toList();
+    	if (empty($makes)) {
+    		/*
+    		 * if it's nothing there, TODO
+    		 */
+    		
+    	}
     	$this->set(compact("makes"));
     	
     	/**
@@ -147,12 +160,13 @@ class VdbController extends AppController {
     
     public function asyncs() {
     	$this->viewBuilder()->layout("ajax");
-    	$query = $this->Cars->find();
+    	$query = $this->Models->find();
     	$query->hydrate(false);
-    	if ($make = $this->request->query("make")) {
+    	if ($makeid = $this->request->query("makeid")) {
     		$models = $query
-    			->select(['model'])
-    			->where(['make' => $make])
+    			->select(['id', 'makeid', 'name'])
+    			->distinct(['name'])
+    			->where(['makeid' => $makeid])
     			->toList();
     		$this->set(compact("models"));
     	}

@@ -20,7 +20,7 @@
 									foreach ($makes as $make) {
 										$im++
 									?>
-										<option value="<?= $make['make'] ?>"><?= $make['make'] ?></option>
+										<option value="<?= $make['id'] ?>"><?= $make['name'] ?></option>
 									<?php
 									}
 									?>
@@ -89,8 +89,14 @@
 									jQuery("#SearchModel").append(xmlhttp.responseText);
 								}
 							}
-							xmlhttp.open("GET", "asyncs?make=" + jQuery("#SearchMake").find("option:selected").text() + "&t=" + Math.random(), true);
+							xmlhttp.open("GET", 
+								"asyncs?makeid=" 
+								+ jQuery("#SearchMake").find("option:selected").val() 
+								+ "&t=" + Math.random(), 
+								true
+							);
 							xmlhttp.send();
+							//alert(jQuery("#SearchMake").find("option:selected").val());// for debug
 						}
 					});
 					</script>
@@ -163,44 +169,3 @@
 <!-- for debug begin -->
 <?php //echo str_replace("\n", "<br/>", print_r($makes, true)) . "#$"; ?>
 <!-- for debug end -->
-<div id="results-body">111</div>
-<script>
-window.sdkAsyncInit = function() {
-    // Instantiate the SDK
-    var res = new EDMUNDSAPI("<?= EDMUNDS_API_KEY ?>");
-    // Optional parameters
-    var options = {};
-    // Callback function to be called when the API response is returned
-    function success(res) {
-        var body = document.getElementById('results-body');
-        if (res.error) {
-            body.innerHTML = "ERROR: " + res.error.message;
-        }
-        body.innerHTML = "The first make in the response is " 
-            + res.makes[0].name + "(" + res.makes.length + ")";
-        for (var i = 0; i < res.makes.length; i++) {
-			jQuery("#SearchMake").append(
-				"<option value='" 
-				+ res.makes[i].name + "'>" 
-				+ res.makes[i].name 
-				+ "</option>"
-			);
-        }
-    }
-    // Oops, Houston we have a problem!
-    function fail(data) {
-        console.log(data);
-    }
-    // Fire the API call
-    res.api('/api/vehicle/v2/makes', options, success, fail);
-    // Additional initialization code such as adding Event Listeners goes here
-};
-//Load the SDK asynchronously
-(function(d, s, id){
-      var js, sdkjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "/vdb/js/edmunds.api.sdk.js";
-      sdkjs.parentNode.insertBefore(js, sdkjs);
- }(document, 'script', 'edmunds-jssdk'));
-</script>
