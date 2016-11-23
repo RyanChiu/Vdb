@@ -20,7 +20,7 @@
 									foreach ($makes as $make) {
 										$im++
 									?>
-										<option value="<?= $make['id'] ?>"><?= $make['name'] ?></option>
+										<option value="<?= $make['id'] . ',' . $make['niceName'] ?>"><?= $make['name'] ?></option>
 									<?php
 									}
 									?>
@@ -60,9 +60,17 @@
 								</select>
 							</div>
 							<div class="col-xs-3">
-								<input name="zip" type="text" class="form-control" style="width:100%" placeholder="zip code">
+								<select name="year" id="SearchYear" class="form-control" style="width:100%">
+									<option value="-1">Year</option>
+								</select>
 							</div>
 							<div class="col-xs-3">
+								<input name="zip" type="text" class="form-control" style="width:100%" placeholder="zip code">
+							</div>
+						</div>
+						<div class="row" style="margin-top:12px;">
+							<div class="col-xs-6"></div>
+							<div class="col-xs-6">
 								<button type="submit" class="btn btn-default" style="width:100%">Search</button>
 							</div>
 						</div>
@@ -90,8 +98,37 @@
 								}
 							}
 							xmlhttp.open("GET", 
-								"asyncs?makeid=" 
+								"asyncs?makeid_nicename=" 
 								+ jQuery("#SearchMake").find("option:selected").val() 
+								+ "&t=" + Math.random(), 
+								true
+							);
+							xmlhttp.send();
+							//alert(jQuery("#SearchMake").find("option:selected").val());// for debug
+						}
+					});
+					jQuery("#SearchModel").change(function() {
+						var xmlhttp;
+						if (window.XMLHttpRequest)
+						{// code for IE7+, Firefox, Chrome, Opera, Safari
+							xmlhttp=new XMLHttpRequest();
+						}
+						else
+						{// code for IE6, IE5
+							xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+							// do nothing here for now
+						}
+						if (xmlhttp) {
+							xmlhttp.onreadystatechange=function() {
+								if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+									//alert(xmlhttp.responseText);// for debug
+									jQuery("#SearchYear").empty();
+									jQuery("#SearchYear").append(xmlhttp.responseText);
+								}
+							}
+							xmlhttp.open("GET", 
+								"asyncs?modelid_nicename=" 
+								+ jQuery("#SearchModel").find("option:selected").val() 
 								+ "&t=" + Math.random(), 
 								true
 							);
