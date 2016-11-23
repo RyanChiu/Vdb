@@ -40,6 +40,17 @@
 						</td>
 					</tr>
 					<?php 
+					if (isset($jsonStyles) && $jsonStyles->stylesCount > 0) {
+					?>
+					<tr>
+						<td colspan="2" style="font-size:6px;">
+							(of "<a href="#tab2_"><?=  $jsonStyles->styles[0]->name ?></a>")
+						</td>
+					</tr>
+					<?php 
+					}
+					?>
+					<?php 
 					}
 					?>
 					<!-- Quantity -->
@@ -149,5 +160,5 @@
 </script>
 
 <!-- for debug begin -->
-<?php //echo str_replace("\n", "<br/>", print_r($jsonPrice, true)); ?>
+<?php //echo str_replace("\n", "<br/>", print_r($jsonStyles, true)); ?>
 <!-- for debug end -->
