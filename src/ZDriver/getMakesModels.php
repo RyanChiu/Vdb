@@ -2,11 +2,11 @@
 include_once './includes/constants.php';
 include_once './includes/methods.php';
 
-$content = callAPI("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=" . EDMUNDS_API_KEY);
+$content = __callAPI("http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=" . EDMUNDS_API_KEY);
 
 $jdata = json_decode($content, false);
 
-$dbLink = getDBLink();
+$dbLink = __getDBLink();
 mysqli_query($dbLink, "insert into pre_makes (id, name, niceName, updateTime) select *, now() from makes");
 echo mysqli_affected_rows($dbLink) . " make(s) copied into pre_makes with timestamps.\n";
 mysqli_query($dbLink, "TRUNCATE `makes`");

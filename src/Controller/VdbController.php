@@ -234,25 +234,12 @@ class VdbController extends AppController {
     		$modelnicename = $modelid_nicename[1];
     		$year = $data['year'];
     		$zip = $data['zip'];
-    		$content = callAPI(
-    			"https://api.edmunds.com/api/editorial/v2/$makenicename/$modelnicename/$year"
-    				. "?api_key=" . EDMUNDS_API_KEY . "&fmt=json"
-    		);
-    		$jsonArticle = json_decode($content, false);
-    		$content = callAPI(
-    			"https://api.edmunds.com/api/vehicle/v2/$makenicename/$modelnicename/$year"
-    			. "/styles?api_key=" . EDMUNDS_API_KEY . "&fmt=json"
-    		);
-    		$jsonStyles = json_decode($content, false);
+    		$jsonArticle = __getArticle($makenicename, $modelnicename, $year, EDMUNDS_API_KEY);
+    		$jsonStyles = __getStyles($makenicename, $modelnicename, $year, EDMUNDS_API_KEY);
     		$jsonPrice = null;
     		if (!empty($zip) && !empty($jsonStyles) && $jsonStyles->stylesCount > 0) {
     			$styleid = $jsonStyles->styles[0]->id;
-    			$content = callAPI(
-    				"https://api.edmunds.com/v1/api/tmv/tmvservice/calculatenewtmv?"
-    				. "styleid=$styleid&zip=$zip"
-    				. "&api_key=" . EDMUNDS_API_KEY . "&fmt=json"
-    			);
-    			$jsonPrice = json_decode($content, false);
+    			$jsonPrice = __getPrice($styleid, $zip, EDMUNDS_API_KEY);
     		}
     		$this->set(compact("jsonArticle"));
     		$this->set(compact("jsonStyles"));

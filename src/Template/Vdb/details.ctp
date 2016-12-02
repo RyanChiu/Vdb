@@ -42,9 +42,9 @@
 					<?php 
 					if (isset($jsonStyles) && $jsonStyles->stylesCount > 0) {
 					?>
-					<tr>
-						<td colspan="2" style="font-size:6px;">
-							(of "<a href="#tab2_"><?=  $jsonStyles->styles[0]->name ?></a>")
+					<tr style="border-spacing:0;">
+						<td colspan="2" style="font-size:10px;padding:0;margin:0;border-spacing:0;">
+							"<a href="#tab2_"><?=  $jsonStyles->styles[0]->name ?></a>"
 						</td>
 					</tr>
 					<?php 
