@@ -22,7 +22,7 @@ while ($r = mysqli_fetch_assoc($rs)) {
 		/*
 		 * insert the values
 		 */
-		$sql += sprintf(
+		$sql .= sprintf(
 			"(
 				'%s',	/*makenicename*/
 				'%s',	/*modelnicename*/
